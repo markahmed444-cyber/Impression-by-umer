@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressions by Umer — Luxury Fragrances, Masterfully Captured</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dark: #8B6914;
+    --black: #080808;
+    --black-soft: #111111;
+    --black-card: #141414;
+    --white: #F5F0E8;
+    --white-dim: rgba(245,240,232,0.6);
+    --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background 0.3s;
+  }
+  .cursor-follower {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition: all 0.15s ease;
+    opacity: 0.6;
+  }
+  .cursor.expand { width: 20px; height: 20px; }
+  .cursor-follower.expand { width: 60px; height: 60px; opacity: 0.3; }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* NAVIGATION */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 60px;
+    transition: var(--transition);
+  }
+  nav.scrolled {
+    background: rgba(8,8,8,0.95);
+    backdrop-filter: blur(20px);
+    padding: 16px 60px;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--white-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 10px 24px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    cursor: none;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  .nav-cta:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: none; }
+  .hamburger span { width: 24px; height: 1px; background: var(--gold); transition: 0.3s; }
+
+  /* HERO */
+  .hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 50%, rgba(201,168,76,0.08) 0%, transparent 65%),
+                radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 50%);
+  }
+  .hero-lines {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .hero-lines::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.2), transparent);
+    transform: translateX(-50%);
+  }
+  .hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+  }
+  .hero-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 8px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
+  }
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(52px, 9vw, 120px);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -1px;
+    color: var(--white);
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s forwards;
+  }
+  .hero-title span {
+    display: block;
+    color: var(--gold);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 7vw, 90px);
+    font-weight: 300;
+  }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--white-dim);
+    letter-spacing: 2px;
+    margin: 30px 0 50px;
+    opacity: 0;
+    animation: fadeUp 1s 0.7s forwards;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    padding: 16px 44px;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-decoration: none;
+    cursor: none;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold-light);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+  }
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+  .btn-secondary {
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    padding: 16px 44px;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-decoration: none;
+    cursor: none;
+    transition: var(--transition);
+  }
+  .btn-secondary:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: fadeIn 1s 1.5s forwards;
+  }
+  .hero-scroll span {
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* MARQUEE */
+  .marquee-section {
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 18px 0;
+    overflow: hidden;
+    background: rgba(201,168,76,0.03);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 60px;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+  .marquee-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
+
+  /* SECTIONS */
+  section { padding: 120px 60px; }
+
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-label::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--gold);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  /* STORY SECTION */
+  .story-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .story-visual {
+    position: relative;
+    aspect-ratio: 3/4;
+  }
+  .story-img-frame {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--gold-dark) 0%, rgba(201,168,76,0.1) 50%, transparent 100%);
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+  .story-img-inner {
+    position: absolute;
+    inset: 20px;
+    background: var(--black-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .story-logo-display {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+  }
+  .story-logo-display .logo-iu {
+    font-size: 120px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    text-shadow: 0 0 60px rgba(201,168,76,0.3);
+  }
+  .story-logo-display .logo-name {
+    font-size: 16px;
+    letter-spacing: 8px;
+    color: var(--white-dim);
+    margin-top: 10px;
+  }
+  .story-corner {
+    position: absolute;
+    width: 20px; height: 20px;
+  }
+  .story-corner.tl { top: 5px; left: 5px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+  .story-corner.tr { top: 5px; right: 5px; border-top: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+  .story-corner.bl { bottom: 5px; left: 5px; border-bottom: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+  .story-corner.br { bottom: 5px; right: 5px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+  .story-text p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--white-dim);
+    margin: 24px 0;
+  }
+  .story-stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 50px;
+    padding-top: 50px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+  .story-stat .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .story-stat .label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--white-dim);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* FRAGRANCES */
+  .fragrances-section { background: var(--black-soft); }
+  .fragrances-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 70px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .fragrances-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .fragrance-card {
+    background: var(--black-card);
+    padding: 40px 30px;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: none;
+    border: 1px solid rgba(201,168,76,0.05);
+  }
+  .fragrance-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .fragrance-card:hover { transform: translateY(-6px); border-color: rgba(201,168,76,0.2); }
+  .fragrance-card:hover::before { opacity: 1; }
+  .fragrance-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    opacity: 0.5;
+    margin-bottom: 30px;
+  }
+  .fragrance-bottle {
+    width: 60px;
+    height: 90px;
+    margin: 0 auto 30px;
+    position: relative;
+  }
+  .bottle-svg { width: 100%; height: 100%; }
+  .fragrance-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .fragrance-inspired {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0.7;
+  }
+  .fragrance-notes {
+    font-size: 12px;
+    color: var(--white-dim);
+    line-height: 1.8;
+    margin-bottom: 30px;
+  }
+  .fragrance-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+  .fragrance-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+  }
+  .fragrance-price small { font-size: 12px; color: var(--white-dim); }
+  .fragrance-btn {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    cursor: none;
+    transition: 0.3s;
+    color: var(--gold);
+    font-size: 18px;
+    text-decoration: none;
+  }
+  .fragrance-btn:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+  .fragrance-tag {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 8px;
+    letter-spacing: 2px;
+    padding: 4px 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* PROCESS */
+  .process-section {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 70px;
+    background: rgba(201,168,76,0.1);
+  }
+  .process-step {
+    background: var(--black);
+    padding: 50px 40px;
+    position: relative;
+  }
+  .process-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    font-weight: 300;
+    color: rgba(201,168,76,0.1);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .process-icon {
+    width: 48px; height: 48px;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    font-size: 20px;
+  }
+  .process-step h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+  .process-step p {
+    font-size: 13px;
+    color: var(--white-dim);
+    line-height: 1.8;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials-section {
+    background: var(--black-soft);
+    overflow: hidden;
+  }
+  .testimonials-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 70px;
+  }
+  .testimonial-card {
+    background: var(--black-card);
+    padding: 50px 40px;
+    position: relative;
+    border: 1px solid rgba(201,168,76,0.05);
+  }
+  .testimonial-card::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 120px;
+    color: rgba(201,168,76,0.08);
+    position: absolute;
+    top: 20px; left: 30px;
+    line-height: 1;
+  }
+  .stars { color: var(--gold); font-size: 12px; letter-spacing: 3px; margin-bottom: 24px; }
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--white);
+    margin-bottom: 30px;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .author-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    color: var(--black);
+    font-weight: 700;
+  }
+  .author-name { font-size: 13px; font-weight: 500; }
+  .author-loc { font-size: 10px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; }
+
+  /* CONTACT / ORDER */
+  .contact-section {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .contact-section .section-label { justify-content: center; }
+  .contact-section .section-label::before { display: none; }
+  .contact-section .section-title { margin-bottom: 20px; }
+  .contact-section .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--white-dim);
+    margin-bottom: 60px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 60px;
+  }
+  .contact-card {
+    background: var(--black-card);
+    padding: 40px 30px;
+    text-align: center;
+    border: 1px solid rgba(201,168,76,0.05);
+    transition: var(--transition);
+    cursor: none;
+    text-decoration: none;
+    display: block;
+  }
+  .contact-card:hover { border-color: rgba(201,168,76,0.3); background: rgba(201,168,76,0.03); }
+  .contact-icon { font-size: 28px; margin-bottom: 16px; }
+  .contact-card h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .contact-card p { font-size: 13px; color: var(--white-dim); line-height: 1.6; }
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: #25D366;
+    color: white;
+    padding: 18px 50px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-decoration: none;
+    cursor: none;
+    transition: var(--transition);
+    margin-bottom: 16px;
+  }
+  .whatsapp-btn:hover { background: #128C7E; transform: translateY(-2px); }
+  .whatsapp-note { font-size: 11px; color: var(--white-dim); letter-spacing: 2px; }
+
+  /* FAQ */
+  .faq-section {
+    background: var(--black-soft);
+  }
+  .faq-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .faq-inner .section-label,
+  .faq-inner .section-title { text-align: left; }
+  .faq-list { margin-top: 60px; }
+  .faq-item {
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    overflow: hidden;
+  }
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0;
+    cursor: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--white);
+    transition: color 0.3s;
+  }
+  .faq-question:hover { color: var(--gold); }
+  .faq-question .icon {
+    width: 28px; height: 28px;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    color: var(--gold);
+    transition: transform 0.3s, background 0.3s;
+    flex-shrink: 0;
+  }
+  .faq-item.open .faq-question .icon { transform: rotate(45deg); background: var(--gold); color: var(--black); }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .faq-answer-inner {
+    padding: 0 0 28px;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--white-dim);
+  }
+
+  /* FOOTER */
+  footer {
+    background: #050505;
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding: 80px 60px 40px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+  }
+  .footer-brand .logo {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+  .footer-brand .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--white-dim);
+    margin-bottom: 24px;
+  }
+  .footer-brand p {
+    font-size: 13px;
+    color: rgba(245,240,232,0.4);
+    line-height: 1.8;
+    max-width: 280px;
+  }
+  .footer-col h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 12px; }
+  .footer-col ul li a {
+    font-size: 13px;
+    color: rgba(245,240,232,0.4);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-col ul li a:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(201,168,76,0.08);
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-bottom p {
+    font-size: 11px;
+    color: rgba(245,240,232,0.25);
+    letter-spacing: 1px;
+  }
+  .footer-bottom .gold { color: var(--gold); }
+  .social-links { display: flex; gap: 16px; }
+  .social-link {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201,168,76,0.2);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    color: var(--gold);
+    font-size: 14px;
+    transition: 0.3s;
+    cursor: none;
+  }
+  .social-link:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+
+  /* FLOATING WHATSAPP */
+  .float-wa {
+    position: fixed;
+    bottom: 30px; right: 30px;
+    width: 56px; height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    text-decoration: none;
+    z-index: 900;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    animation: pulse 2s infinite;
+    cursor: none;
+  }
+
+  /* REVEAL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* KEYFRAMES */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 4px 40px rgba(37,211,102,0.7); }
+  }
+  @keyframes shimmer {
+    from { background-position: -200% center; }
+    to { background-position: 200% center; }
+  }
+
+  /* GOLD SHIMMER TEXT */
+  .shimmer {
+    background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold-light) 40%, var(--gold-dark) 60%, var(--gold) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+  }
+
+  /* BANNER STRIP */
+  .banner-strip {
+    background: var(--gold);
+    color: var(--black);
+    text-align: center;
+    padding: 12px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    nav.scrolled { padding: 14px 24px; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    section { padding: 80px 24px; }
+    .story-section { grid-template-columns: 1fr; gap: 50px; }
+    .fragrances-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-grid { grid-template-columns: 1fr 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+    .hero-actions { flex-direction: column; align-items: center; }
+    .fragrances-header { flex-direction: column; gap: 20px; align-items: flex-start; }
+  }
+  @media (max-width: 600px) {
+    .fragrances-grid { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<!-- BANNER -->
+<div class="banner-strip">✦ Free Delivery in Abbottabad &nbsp;|&nbsp; Cash on Delivery Available &nbsp;|&nbsp; Order via WhatsApp ✦</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">IMPRESSIONS · BY UMER</a>
+  <ul class="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#fragrances">Fragrances</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="https://wa.me/923000000000" class="nav-cta" target="_blank">Order Now</a>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">✦ Est. Abbottabad, Pakistan ✦</p>
+    <h1 class="hero-title">
+      IMPRESSIONS
+      <span>by Umer</span>
+    </h1>
+    <p class="hero-subtitle">Luxury Fragrances, Masterfully Captured.</p>
+    <div class="hero-actions">
+      <a href="#fragrances" class="btn-primary"><span>Explore Collection</span></a>
+      <a href="#story" class="btn-secondary">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marqueeTrack">
+    <div class="marquee-item"><span>Oud Collection</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Inspired By Dior</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>30ml · 50ml · 100ml</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Cash On Delivery</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Luxury Blends</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Handcrafted Scents</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Your Choice. Your Scent.</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Oud Collection</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Inspired By Dior</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>30ml · 50ml · 100ml</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Cash On Delivery</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Luxury Blends</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Handcrafted Scents</span><div class="marquee-dot"></div></div>
+    <div class="marquee-item"><span>Your Choice. Your Scent.</span><div class="marquee-dot"></div></div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section id="story">
+  <div class="story-section">
+    <div class="story-visual reveal">
+      <div class="story-img-frame"></div>
+      <div class="story-img-inner">
+        <div class="story-logo-display">
+          <div class="logo-iu shimmer">IU</div>
+          <div class="logo-name">IMPRESSIONS</div>
+        </div>
+      </div>
+      <div class="story-corner tl"></div>
+      <div class="story-corner tr"></div>
+      <div class="story-corner bl"></div>
+      <div class="story-corner br"></div>
+    </div>
+    <div class="story-text">
+      <p class="section-label reveal">Our Story</p>
+      <h2 class="section-title reveal">Crafted with <em>Passion,</em><br>Worn with Pride</h2>
+      <p class="reveal reveal-delay-1">Impressions by Umer was born from a simple but powerful belief — that everyone deserves to wear a luxury fragrance that truly reflects who they are, without paying luxury prices.</p>
+      <p class="reveal reveal-delay-2">Based in the heart of Abbottabad, we handcraft each bottle with meticulous care, capturing the essence of the world's most celebrated scents and making them accessible to you.</p>
+      <p class="reveal reveal-delay-3">Every fragrance tells a story. Every impression you leave, lasts.</p>
+      <div class="story-stat-row reveal reveal-delay-4">
+        <div class="story-stat">
+          <div class="num">20+</div>
+          <div class="label">Unique Fragrances</div>
+        </div>
+        <div class="story-stat">
+          <div class="num">100%</div>
+          <div class="label">Authentic Ingredients</div>
+        </div>
+        <div class="story-stat">
+          <div class="num">500+</div>
+          <div class="label">Happy Customers</div>
+        </div>
+        <div class="story-stat">
+          <div class="num">COD</div>
+          <div class="label">Available Nationwide</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FRAGRANCES -->
+<section class="fragrances-section" id="fragrances">
+  <div class="fragrances-header reveal">
+    <div>
+      <p class="section-label">The Collection</p>
+      <h2 class="section-title">Our <em>Signature</em><br>Fragrances</h2>
+    </div>
+    <a href="https://wa.me/923000000000?text=I%20want%20to%20see%20all%20fragrances" class="btn-secondary" target="_blank">View All</a>
+  </div>
+  <div class="fragrances-grid">
+
+    <div class="fragrance-card reveal">
+      <div class="fragrance-tag">Bestseller</div>
+      <div class="fragrance-number">01</div>
+      <svg class="bottle-svg" viewBox="0 0 60 90" fill="none">
+        <rect x="22" y="2" width="16" height="10" rx="2" fill="#C9A84C" opacity="0.8"/>
+        <rect x="18" y="12" width="24" height="4" rx="1" fill="#C9A84C" opacity="0.5"/>
+        <rect x="10" y="16" width="40" height="70" rx="4" fill="rgba(201,168,76,0.1)" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+        <rect x="14" y="30" width="32" height="40" rx="2" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+        <text x="30" y="53" text-anchor="middle" fill="#C9A84C" font-size="6" font-family="Cinzel">IU</text>
+      </svg>
+      <h3 class="fragrance-name">Gris Dior</h3>
+      <p class="fragrance-inspired">Inspired by · Dior</p>
+      <p class="fragrance-notes">Top: Bergamot, Neroli<br>Heart: Iris, Rose<br>Base: Vetiver, Musk</p>
+      <div class="fragrance-footer">
+        <div class="fragrance-price">PKR 1,800 <small>/ 30ml</small></div>
+        <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Gris%20Dior" class="fragrance-btn" target="_blank">→</a>
+      </div>
+    </div>
+
+    <div class="fragrance-card reveal reveal-delay-1">
+      <div class="fragrance-number">02</div>
+      <svg class="bottle-svg" viewBox="0 0 60 90" fill="none">
+        <rect x="22" y="2" width="16" height="10" rx="2" fill="#C9A84C" opacity="0.8"/>
+        <rect x="18" y="12" width="24" height="4" rx="1" fill="#C9A84C" opacity="0.5"/>
+        <rect x="10" y="16" width="40" height="70" rx="4" fill="rgba(201,168,76,0.1)" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+        <rect x="14" y="30" width="32" height="40" rx="2" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+        <text x="30" y="53" text-anchor="middle" fill="#C9A84C" font-size="6" font-family="Cinzel">IU</text>
+      </svg>
+      <h3 class="fragrance-name">Oud Imperial</h3>
+      <p class="fragrance-inspired">Original Blend</p>
+      <p class="fragrance-notes">Top: Saffron, Cardamom<br>Heart: Oud, Rose<br>Base: Amber, Sandalwood</p>
+      <div class="fragrance-footer">
+        <div class="fragrance-price">PKR 2,200 <small>/ 30ml</small></div>
+        <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Oud%20Imperial" class="fragrance-btn" target="_blank">→</a>
+      </div>
+    </div>
+
+    <div class="fragrance-card reveal reveal-delay-2">
+      <div class="fragrance-tag">New</div>
+      <div class="fragrance-number">03</div>
+      <svg class="bottle-svg" viewBox="0 0 60 90" fill="none">
+        <rect x="22" y="2" width="16" height="10" rx="2" fill="#C9A84C" opacity="0.8"/>
+        <rect x="18" y="12" width="24" height="4" rx="1" fill="#C9A84C" opacity="0.5"/>
+        <rect x="10" y="16" width="40" height="70" rx="4" fill="rgba(201,168,76,0.1)" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+        <rect x="14" y="30" width="32" height="40" rx="2" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+        <text x="30" y="53" text-anchor="middle" fill="#C9A84C" font-size="6" font-family="Cinzel">IU</text>
+      </svg>
+      <h3 class="fragrance-name">Aqua di Gio</h3>
+      <p class="fragrance-inspired">Inspired by · Armani</p>
+      <p class="fragrance-notes">Top: Citrus, Sea Notes<br>Heart: Jasmine, Rosemary<br>Base: Cedarwood, Musk</p>
+      <div class="fragrance-footer">
+        <div class="fragrance-price">PKR 1,800 <small>/ 30ml</small></div>
+        <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Aqua%20di%20Gio" class="fragrance-btn" target="_blank">→</a>
+      </div>
+    </div>
+
+    <div class="fragrance-card reveal reveal-delay-3">
+      <div class="fragrance-number">04</div>
+      <svg class="bottle-svg" viewBox="0 0 60 90" fill="none">
+        <rect x="22" y="2" width="16" height="10" rx="2" fill="#C9A84C" opacity="0.8"/>
+        <rect x="18" y="12" width="24" height="4" rx="1" fill="#C9A84C" opacity="0.5"/>
+        <rect x="10" y="16" width="40" height="70" rx="4" fill="rgba(201,168,76,0.1)" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+        <rect x="14" y="30" width="32" height="40" rx="2" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+        <text x="30" y="53" text-anchor="middle" fill="#C9A84C" font-size="6" font-family="Cinzel">IU</text>
+      </svg>
+      <h3 class="fragrance-name">Tom Oud</h3>
+      <p class="fragrance-inspired">Inspired by · Tom Ford</p>
+      <p class="fragrance-notes">Top: Black Pepper, Ginger<br>Heart: Oud, Leather<br>Base: Patchouli, Vetiver</p>
+      <div class="fragrance-footer">
+        <div class="fragrance-price">PKR 2,000 <small>/ 30ml</small></div>
+        <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Tom%20Oud" class="fragrance-btn" target="_blank">→</a>
+      </div>
+    </div>
+
+    <div class="fragrance-card reveal">
+      <div class="fragrance-number">05</div>
+      <svg class="bottle-svg" viewBox="0 0 60 90" fill="none">
+        <rect x="22" y="2" width="16" height="10" rx="2" fill="#C9A84C" opacity="0.8"/>
+        <rect x="18" y="12" width="24" height="4" rx="1" fill="#C9A84C" opacity="0.5"/>
+        <rect x="10" y="16" width="40" height="70" rx="4" fill="rgba(201,168,76,0.1)" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+        <rect x="14" y="30" width="32" height="40" rx="2" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+        <text x="30" y="53" text-anchor="middle" fill="#C9A84C" font-size="6" font-family="Cinzel">IU</text>
+      </svg>
+      <h3 class="fragrance-name">Imperial Valley</h3>
+      <p class="fragrance-inspired">Original Blend</p>
+      <p class="fragrance-notes">Top: Bergamot, Lemon<br>Heart: Iris, Violet<br>Base: Musk, Amber</p>
+      <div class="fragrance-footer">
+        <div class="fragrance-price">PKR 1,800 <small>/ 30ml</small></div>
+        <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Imperial%20Valley" class="fragrance-btn" target="_blank">→</a>
+      </div>
+    </div>
+
+    <div class="fragrance-card reveal reveal-delay-1">
+      <div class="fragrance-number">06</div>
+      <svg class="bottle-svg" viewBox="0 0 60 90" fill="none">
+        <rect x="22" y="2" width="16" height="10" rx="2" fill="#C9A84C" opacity="0.8"/>
+        <rect x="18" y="12" width="24" height="4" rx="1" fill="#C9A84C" opacity="0.5"/>
+        <rect x="10" y="16" width="40" height="70" rx="4" fill="rgba(201,168,76,0.1)" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+        <rect x="14" y="30" width="32" height="40" rx="2" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+        <text x="30" y="53" text-anchor="middle" fill="#C9A84C" font-size="6" font-family="Cinzel">IU</text>
+      </svg>
+      <h3 class="fragrance-name">Saef Scent</h3>
+      <p class="fragrance-inspired">Summer Edition</p>
+      <p class="fragrance-notes">Top: Mandarin, Peach<br>Heart: Jasmine, Freesia<br>Base: Sandalwood, Musk</p>
+      <div class="fragrance-footer">
+        <div class="fragrance-price">PKR 1,800 <small>/ 30ml</small></div>
+        <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Saef%20Scent" class="fragrance-btn" target="_blank">→</a>
+      </div>
+    </div>
+
+    <div class="fragrance-card reveal reveal-delay-2">
+      <div class="fragrance-number">07</div>
+      <svg class="bottle-svg" viewBox="0 0 60 90" fill="none">
+        <rect x="22" y="2" width="16" height="10" rx="2" fill="#C9A84C" opacity="0.8"/>
+        <rect x="18" y="12" width="24" height="4" rx="1" fill="#C9A84C" opacity="0.5"/>
+        <rect x="10" y="16" width="40" height="70" rx="4" fill="rgba(201,168,76,0.1)" stroke="rgba(201,168,76,0.4)" stroke-width="1"/>
+        <rect x="14" y="30" width="32" height="40" rx="2" fill="rgba(201,168,76,0.05)" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+        <text x="30" y="53" text-anchor="middle" fill="#C9A84C" font-size="6" font-family="Cinzel">IU</text>
+      </svg>
+      <h3 class="fragrance-name">Pore Lodi</h3>
+      <p class="fragrance-inspired">Inspired by · Creed</p>
+      <p class="fragrance-notes">Top: Iris, Anise<br>Heart: Sandalwood, Cedar<br>Base: Musk, Oakmoss</p>
+      <div class="fragrance-footer">
+        <div class="fragrance-price">PKR 2,000 <small>/ 30ml</small></div>
+        <a href="https://wa.me/923000000000?text=I%20want%20to%20order%20Pore%20Lodi" class="fragrance-btn" target="_blank">→</a>
+      </div>
+    </div>
+
+    <div class="fragrance-card reveal reveal-delay-3" style="border-color:rgba(201,168,76,0.15); background: linear-gradient(135deg, rgba(201,168,76,0.05), var(--black-card));">
+      <div class="fragrance-number" style="opacity:1; color:var(--gold);">✦</div>
+      <br>
+      <h3 class="fragrance-name" style="font-size:28px;">20+ More<br>Scents</h3>
+      <br>
+      <p class="fragrance-notes">Can't find what you're looking for? We have a full collection of 20+ luxury-inspired fragrances. Chat with us to discover your perfect scent.</p>
+      <br>
+      <a href="https://wa.me/923000000000?text=Please%20send%20me%20your%20full%20fragrance%20list" class="btn-primary" target="_blank" style="display:block; text-align:center;"><span>See Full List</span></a>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="process-section">
+    <div class="reveal">
+      <p class="section-label">How It Works</p>
+      <h2 class="section-title">From <em>Selection</em><br>to Your Door</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="process-num">01</div>
+        <div class="process-icon">🌿</div>
+        <h3>Choose Your Scent</h3>
+        <p>Browse our collection of 20+ luxury-inspired fragrances. Not sure? Tell us what you like and we'll recommend the perfect one.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-num">02</div>
+        <div class="process-icon">💬</div>
+        <h3>Place Your Order</h3>
+        <p>Simply message us on WhatsApp with your selected fragrance, size (30ml, 50ml or 100ml), and your delivery address.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-num">03</div>
+        <div class="process-icon">✦</div>
+        <h3>We Craft It Fresh</h3>
+        <p>Each bottle is carefully prepared and quality-checked before packaging. We take pride in every single order.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-num">04</div>
+        <div class="process-icon">📦</div>
+        <h3>Delivered to You</h3>
+        <p>Your fragrance arrives at your doorstep. Cash on delivery available. No payment until you receive your order.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="testimonials-inner">
+    <div class="reveal" style="text-align:center; margin-bottom:0;">
+      <p class="section-label" style="justify-content:center;"><span style="width:30px;height:1px;background:var(--gold);display:inline-block;margin-right:16px;"></span>Customer Reviews</p>
+      <h2 class="section-title">What Our <em>Customers</em> Say</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">The Gris Dior impression is absolutely incredible. My colleagues kept asking what perfume I was wearing all week. The quality is outstanding for the price.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AK</div>
+          <div>
+            <div class="author-name">Ahmed K.</div>
+            <div class="author-loc">Abbottabad</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">I've been buying from big brands for years but Impressions by Umer genuinely impressed me. The Oud Imperial is rich and long-lasting. Will definitely reorder!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SF</div>
+          <div>
+            <div class="author-name">Sara F.</div>
+            <div class="author-loc">Islamabad</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Ordered the Tom Oud and Tom Ford Oud Wood reference is spot on. Fast delivery, beautiful packaging, and cash on delivery made it super easy. 100% recommended.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MR</div>
+          <div>
+            <div class="author-name">Muhammad R.</div>
+            <div class="author-loc">Peshawar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER / CONTACT -->
+<section id="contact">
+  <div class="contact-section">
+    <p class="section-label reveal">Get In Touch</p>
+    <h2 class="section-title reveal">Ready to Make Your<br><em>Impression?</em></h2>
+    <p class="subtitle reveal">Order directly via WhatsApp — quick, easy, and no registration needed.</p>
+    <div class="contact-grid reveal">
+      <a href="https://wa.me/923000000000" class="contact-card" target="_blank">
+        <div class="contact-icon">💬</div>
+        <h3>WhatsApp</h3>
+        <p>Message us directly to place your order, ask questions or get recommendations.</p>
+      </a>
+      <a href="https://www.facebook.com" class="contact-card" target="_blank">
+        <div class="contact-icon">📘</div>
+        <h3>Facebook</h3>
+        <p>Follow our page for new launches, offers and fragrance tips.</p>
+      </a>
+      <a href="https://www.tiktok.com" class="contact-card" target="_blank">
+        <div class="contact-icon">🎵</div>
+        <h3>TikTok</h3>
+        <p>Watch fragrance reviews, unboxings and behind-the-scenes content.</p>
+      </a>
+    </div>
+    <div class="reveal">
+      <a href="https://wa.me/923000000000?text=Hi!%20I%20want%20to%20order%20from%20Impressions%20by%20Umer" class="whatsapp-btn" target="_blank">
+        <span>💬</span> Order on WhatsApp
+      </a>
+      <p class="whatsapp-note">Cash on Delivery · Fast Shipping · Abbottabad & Nationwide</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner">
+    <p class="section-label reveal">FAQ</p>
+    <h2 class="section-title reveal">Frequently Asked <em>Questions</em></h2>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Are these original fragrances or copies?
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Our fragrances are high-quality impressions inspired by world-famous luxury scents. We do not claim to sell original branded perfumes. Think of them as premium alternatives — capturing the same scent profile at a fraction of the cost, using quality fragrance oils.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          How long does the scent last?
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Our fragrances typically last 6–8 hours on skin. Applying on pulse points (wrists, neck, behind ears) and on clothing extends the longevity significantly. Our Oud-based scents are particularly long-lasting.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Do you offer Cash on Delivery?
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Yes! We offer Cash on Delivery (COD) across Pakistan. You pay only when your order arrives at your doorstep. We also accept EasyPaisa and JazzCash for advance payment.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          What sizes do you offer?
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">We currently offer 30ml, 50ml and 100ml bottles. The 30ml is perfect for trying a new scent, while the 100ml offers the best value for your favourites. All sizes are available in our elegant black and gold bottles.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          How do I place an order?
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Simply message us on WhatsApp with the fragrance name, size, and your delivery address. We'll confirm your order and dispatch it within 24 hours. Delivery typically takes 2–4 business days depending on your location.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Can I get a custom or gift set?
+          <span class="icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Absolutely! We offer gift sets and custom bundles — perfect for weddings, Eid, or any special occasion. Message us on WhatsApp to discuss custom packaging and bulk orders.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">IMPRESSIONS</div>
+      <div class="tagline">by Umer</div>
+      <p>Luxury fragrances, masterfully captured. Based in Abbottabad, delivering across Pakistan. Your choice. Your scent. Your impression.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Collection</h4>
+      <ul>
+        <li><a href="#">Oud Collection</a></li>
+        <li><a href="#">Dior Inspirations</a></li>
+        <li><a href="#">Tom Ford Series</a></li>
+        <li><a href="#">Summer Scents</a></li>
+        <li><a href="#">Gift Sets</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Information</h4>
+      <ul>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="https://wa.me/923000000000" target="_blank">WhatsApp Order</a></li>
+        <li><a href="#">Facebook Page</a></li>
+        <li><a href="#">TikTok</a></li>
+        <li><a href="#">Abbottabad, KPK</a></li>
+        <li><a href="#">Cash on Delivery</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 <span class="gold">Impressions by Umer</span>. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#" class="social-link" title="Facebook">f</a>
+      <a href="#" class="social-link" title="TikTok">t</a>
+      <a href="https://wa.me/923000000000" class="social-link" target="_blank" title="WhatsApp">w</a>
+    </div>
+    <p>Crafted with <span class="gold">✦</span> in Pakistan</p>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/923000000000?text=Hi!%20I%20want%20to%20order%20from%20Impressions%20by%20Umer" class="float-wa" target="_blank" title="Order on WhatsApp">💬</a>
+
+<script>
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  const follower = document.getElementById('cursorFollower');
+  let mx = 0, my = 0, fx = 0, fy = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+  function animFollower() {
+    fx += (mx - fx) * 0.12;
+    fy += (my - fy) * 0.12;
+    follower.style.left = fx + 'px';
+    follower.style.top = fy + 'px';
+    requestAnimationFrame(animFollower);
+  }
+  animFollower();
+  document.querySelectorAll('a, button, .fragrance-card, .faq-question').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.classList.add('expand'); follower.classList.add('expand'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('expand'); follower.classList.remove('expand'); });
+  });
+
+  // NAVBAR SCROLL
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // REVEAL ON SCROLL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // FAQ
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-answer').style.maxHeight = '0';
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      item.querySelector('.faq-answer').style.maxHeight = item.querySelector('.faq-answer-inner').scrollHeight + 'px';
+    }
+  }
+
+  // MOBILE MENU
+  function toggleMenu() {
+    // simple toggle for mobile
+    const links = document.querySelector('.nav-links');
+    if (links) {
+      links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'fixed';
+      links.style.top = '70px';
+      links.style.left = '0';
+      links.style.right = '0';
+      links.style.background = 'rgba(8,8,8,0.98)';
+      links.style.padding = '30px';
+      links.style.gap = '24px';
+    }
+  }
+
+  // Duplicate marquee for seamless loop
+  const track = document.getElementById('marqueeTrack');
+  track.innerHTML += track.innerHTML;
+</script>
+</body>
+</html>
